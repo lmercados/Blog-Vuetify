@@ -37,19 +37,48 @@
   </v-card>
 
     <v-content>
-    <router-view></router-view>
+    <router-view>
+ 
+
+
+    </router-view>
+    <v-dialog
+      v-model="loading.estado"
+      hide-overlay
+      persistent
+      width="500"
+    >
+      <v-card
+        color="orange"
+        dark
+      >
+        <v-card-text>
+          {{loading.titulo}}
+          <v-progress-linear
+            indeterminate
+            color="white"
+            class="mb-0"
+          ></v-progress-linear>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
     </v-content>
   </v-app>
 </template>
 
 <script>
-//import HelloWorld from './components/HelloWorld';
-import axios from "axios";
+
+import {mapState} from "vuex";
 export default {
   name: 'App',
 
   components: {
    
+   
+  },
+  computed:
+  {
+    ...mapState(['loading'])
   },
 
   data: () => ({
