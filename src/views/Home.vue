@@ -11,78 +11,74 @@
           </p>
         </v-col>
       </v-row>
-    
 
- 
-   <v-row>
-        <v-col sm="12" md=4 v-for="item in posts" :key="item.index">
-          <v-card class="mb-6" max-width="500" >
+      <v-row>
+        <v-col sm="12" md="4" v-for="item in posts" :key="item.index">
+          <v-card class="mb-6" max-width="500">
             <v-img
               class="white--text align-end"
               height="200px"
               src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
             >
-
-        
-              <v-card-title>{{item.titulo}} </v-card-title>
+              <v-card-title>{{item.titulo}}</v-card-title>
             </v-img>
-            <v-card-text class="">{{item.descripcion}}</v-card-text>
-             
-    <v-card-actions>
-      <v-btn color="orange" text><router-link  style="text-decoration: none; color: inherit;" :to="{ name: 'Publicacion', params: { id_publicacion:item.id }}">Look</router-link></v-btn>
+            <v-card-text class>{{item.descripcion}}</v-card-text>
 
-    </v-card-actions>
+            <v-card-actions>
+              <v-btn color="orange" text>
+                <router-link
+                  style="text-decoration: none; color: inherit;"
+                  :to="{ name: 'Publicacion', params: { id_publicacion:item.id }}"
+                >Look</router-link>
+              </v-btn>
+            </v-card-actions>
           </v-card>
         </v-col>
       </v-row>
-    
     </v-container>
-    </div>
-   
-  
+  </div>
 </template>
 
 <script>
 // @ is an alias to /src
 //import HelloWorld from '@/components/HelloWorld.vue'
 import axios from "axios";
-import {mapMutations} from "vuex"
+import { mapMutations } from "vuex";
 export default {
   name: "Home",
   components: {},
 
   data: () => ({
     respuestaPost: [],
-    posts:[],
-    numero:0
+    posts: [],
+    numero: 0
   }),
-  methods:
-  { 
-    ...mapMutations(['mostrarLoading','OcultarLoading']),
-     cargarPost(){
-       
-       for (let index = 0; index <9; index++) {
-          this.posts.push({id:this.respuestaPost[index].id,titulo:this.respuestaPost[index].title.toUpperCase(),
-           descripcion:this.respuestaPost[index].body})
-          }
-       }
-    },
+  methods: {
+    ...mapMutations(["mostrarLoading", "OcultarLoading"]),
+    cargarPost() {
+      for (let index = 0; index < 9; index++) {
+        this.posts.push({
+          id: this.respuestaPost[index].id,
+          titulo: this.respuestaPost[index].title.toUpperCase(),
+          descripcion: this.respuestaPost[index].body
+        });
+      }
+    }
+  },
   mounted() {
-     this.mostrarLoading({titulo:'Cargando Post.....',estado:true});
-     axios
-      .get('https://jsonplaceholder.typicode.com/posts')
+    this.mostrarLoading({ titulo: "Cargando Post.....", estado: true });
+    axios
+      .get("https://jsonplaceholder.typicode.com/posts")
       .then(response => {
-        this.respuestaPost = response.data
+        this.respuestaPost = response.data;
       })
       .catch(error => {
-        console.log(error)
-    
+        console.log(error);
       })
-      .finally(() =>{  
-       
+      .finally(() => {
         this.cargarPost();
         this.OcultarLoading();
-      })
-    }
+      });
+  }
 };
 </script>
