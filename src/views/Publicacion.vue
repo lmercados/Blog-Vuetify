@@ -8,15 +8,10 @@
               height="200px"
               src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
             >
-
-        
-              <v-card-title>{{title}}</v-card-title>
+            <v-card-title>{{title}}</v-card-title>
             </v-img>
             <v-card-text class="orange--text">{{body}}</v-card-text>
-             
-   
-        
-           <v-list two-line>
+             <v-list two-line>
           <template v-for="item in respuestaPost">
             <v-divider :key="item.id"></v-divider>
             <v-list-item  :key="item.email">
@@ -31,12 +26,9 @@
           </template>
         </v-list>
            <v-btn color="red" text @click="irHome">Back</v-btn>
-
-      </v-card>
+       </v-card>
         </v-col>
-        
-         
-        </v-row>
+  </v-row>
     </div>
 </template>
 <script>
@@ -86,15 +78,7 @@ export default {
       })
          
        
-      })
-      
-
-     
-     
-     
-      
-       
-  },
+      })},
 
  
 };

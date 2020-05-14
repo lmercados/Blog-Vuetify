@@ -64,17 +64,9 @@ export default {
        for (let index = 0; index <9; index++) {
           this.posts.push({id:this.respuestaPost[index].id,titulo:this.respuestaPost[index].title.toUpperCase(),
            descripcion:this.respuestaPost[index].body})
-          
+          }
        }
-    
-
-    
-  
-        
-    
-     }
-      
-  },
+    },
   mounted() {
      this.mostrarLoading({titulo:'Cargando Post.....',estado:true});
      axios
@@ -91,8 +83,6 @@ export default {
         this.cargarPost();
         this.OcultarLoading();
       })
-      
-       
-  }
+    }
 };
 </script>
